@@ -1,0 +1,103 @@
+#code for war card game
+from enum import Enum
+from enum import IntEnum
+from random import randint
+
+#for a random integer always import randint from random 
+
+
+full_deck = [ ]
+partial_deck = [ ]
+player1_cards = [ ]
+player2_cards = [ ]
+
+
+#card enum for playing cards
+class Card(IntEnum) :
+
+ two = 2
+ three = 3
+ four = 4
+ five = 5
+ six = 6
+ seven = 7
+ eight = 8
+ nine = 9 
+ ten = 10
+ jack = 11
+ queen = 12
+ king = 13
+ ace = 14
+
+
+
+
+
+#suit enum for playing cards
+class Suit(Enum) :
+    SPADES = 'spades'
+    CLUBS = 'clubs'
+    HEARTS = 'hearts'
+    DIAMONDS = 'diamonds'
+
+
+
+
+#class to hold information for playing cards
+class playingcard:
+  def __init__(self , card_value , card_suit) :
+      self.card = card_value
+      self.suit = card_suit
+
+#captials matter when declaring classes
+
+#function for dealing full deck of cards
+def create_deck():
+ for suit in Suit :
+    for card in Card :
+        full_deck.append(playingcard(Card(card),  Suit(suit)))
+ return full_deck
+
+
+
+#draw single card from deck
+def draw_card(deck) :
+    rand_card = randint(0, len(deck) -1)
+    return deck.pop(rand_card)
+
+#deals cards for 2 players for the game of war
+def deal_war() :
+    while(len(partial_deck) > 0 ) :
+        player1_cards.append(draw_card(partial_deck))
+        player2_cards.append(draw_card(partial_deck))
+
+
+
+
+create_deck()
+partial_deck = list(full_deck)
+deal_war()
+
+for i in range (0,   len(player1_cards)) :
+  if (player1_cards)[i].card > (player2_cards[i].card) :
+
+
+   then
+    print("player 1 wins the hand with:   ", player1_cards[i].card)
+    print("player 2 wins the hand with    ",                      )
+
+
+
+
+
+
+test_card = draw_card(partial_deck)
+print("you drew a:  ", test_card.card,  test_card.suit       )
+
+
+
+for i in range(0, len(full_deck)) :
+    print("Card:   ", full_deck[i].card) 
+    print("Suit:   ", full_deck[i].suit)  
+
+
